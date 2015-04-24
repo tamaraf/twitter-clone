@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
 	$('#tweet-controls').hide();
 
 	$('.tweet-compose').on('click', function() {
@@ -24,5 +25,30 @@ $(document).ready(function() {
             $('#tweet-submit.button').removeAttr('disabled');
         }
 	})
+	
+	$('.button').on('click', function(){ 
+        var myTweet = $('.tweet').first().clone('data');        
+        myTweet.find('.avatar').attr('src', 'img/alagoon.jpg');
+        myTweet.find('.fullname').html('No Name');
+        myTweet.find('.username').html('@NoName.Awesome');
+        myTweet.find('.tweet-text').text($('.tweet-compose').val());
+        $('#stream').prepend(myTweet);  
+    })
 
+	$('.tweet-actions').hide(); 
+	$('.tweet').hover(function(){
+		$('.tweet-actions').show();
+		}, function(){
+		$('.tweet-actions').hide();
+	})
+
+	$('.stats').hide();
+	$('.reply').hide();
+
+	$('.tweet').on('click', function(){
+		$('.stats').hide();
+		$('.reply').hide();
+		$('.stats').show();
+		$('.reply').show();
+	})
 });
